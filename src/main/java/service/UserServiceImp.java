@@ -1,7 +1,6 @@
 package service;
 
 import dao.UserDao;
-import dao.UserDaoImp;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,6 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
-//    @Autowired
-//    UserDao userDao;
-//
     @Autowired
     private UserDao userDao;
 

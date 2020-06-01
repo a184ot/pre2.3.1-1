@@ -1,6 +1,5 @@
 package dao;
 
-import dao.UserDao;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,16 +14,12 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
 
 
-
-
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
     public void add(User user) {
-
         sessionFactory.getCurrentSession().save(user);
-
     }
 
     @Override
@@ -37,7 +32,6 @@ public class UserDaoImp implements UserDao {
     @Override
     public void editUser(User user) {
         sessionFactory.getCurrentSession().update(user);
-
     }
 
 
@@ -45,7 +39,6 @@ public class UserDaoImp implements UserDao {
     @SuppressWarnings("unchecked")
     public List<User> listAllUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
-//        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
 

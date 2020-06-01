@@ -10,29 +10,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import service.UserServiceImp;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class UserController {
 
-//    AnnotationConfigApplicationContext context =
-//            new AnnotationConfigApplicationContext(AppConfig.class);
-//
-//    UserService userService = context.getBean(UserService.class);
-//
     public final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-//    @Autowired
-//    public UserController(UserService userService) {
-//        this.userService = userService;
-//    }
-
 
 
     @GetMapping("/")
@@ -97,6 +87,12 @@ public class UserController {
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
+    }
+
+    @PostConstruct
+    public void makeAdmin() {
+        userService.add(new User("Admin", "admin", "123456",
+                "email@mail.ru", 99, "admin"));
     }
 
 }
